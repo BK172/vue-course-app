@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
+  <div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -9,27 +10,38 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <router-link to="/" class="navbar-brand">
+            Vue.js course app
+          </router-link>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <router-link tag="li" to="/" active-class="active" exact>
-              <a>Главная</a>
+            <router-link tag="li" active-class="active" to="/" exact>
+              <a>
+                Главная
+              </a>
             </router-link>
-            <router-link tag="li" to="/users" active-class="active">
-              <a>Список пользователей</a>
+            <router-link tag="li" active-class="active" to="/list" exact>
+              <a>
+                Список пользователей
+              </a>
             </router-link>
-<!--             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li> -->
+            <router-link tag="li" active-class="active" to="/user/add" exact>
+              <a>
+                Добавление пользователя
+              </a>
+            </router-link>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container">
-      <div class="title">Общий заголовок</div>
+    <div id="app" class="container">
+
       <router-view/>
+
     </div>
+
   </div>
 </template>
 
@@ -37,6 +49,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default {
-  name: 'App'
+  name: 'app'
 };
 </script>
+
+<style>
+#app {
+  margin-top: 60px;
+}
+</style>

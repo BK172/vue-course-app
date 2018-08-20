@@ -1,23 +1,21 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// в webpack base config в resolve -> alias прописан корень для @
+
+import Index from '@/pages/Index.vue';
+import UserEdit from '@/pages/UserEdit.vue';
+import UserAdd from '@/pages/UserAdd.vue';
+import Table from '@/pages/Table.vue';
 
 Vue.use(Router);
 
-// по умолчанию роутер в режиме hash - #
 export default new Router({
-	// для современных браузеров с поддержкой history api
-	// можно включить режим без #
-	mode: 'history',
+  mode: 'history',
+  linkActiveClass: 'active',
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: () => import('@/components/HelloWorld')
-    },
-    {
-      path: '/users',
-      component: () => import('@/components/UserPage')
-    }
-  ]
+    { path: '/', component: Index },
+    { path: '/list', component: Table },
+    { path: '/user/add', component: UserAdd },
+    // props true, чтобы при открытии страницы входными параметрами пришел id
+    { path: '/user/:id', component: UserEdit, props: true },
+  ],
 });
