@@ -3,19 +3,34 @@
 <template>
   <div>
 
+    <div class="form-group" :class="{ 'has-error': errors.has('firstName') }">
     <div class="form-group">
       <label>Имя</label>
       <input type="text" class="form-control" v-model="user.firstName" />
+      <input type="text" class="form-control" v-model="user.firstName" name="firstName" v-validate="'required'" />
+      <span v-show="errors.has('firstName')" class="help-block text-danger">
+        {{ errors.first('firstName') }}
+      </span>
     </div>
 
+    <div class="form-group" :class="{ 'has-error': errors.has('lastName') }">
     <div class="form-group">
       <label>Фамилия</label>
       <input type="text" class="form-control" v-model="user.lastName" />
+      <input type="text" class="form-control" v-model="user.lastName" name="lastName" v-validate="'required'" />
+      <span v-show="errors.has('lastName')" class="help-block text-danger">
+        {{ errors.first('lastName') }}
+      </span>
     </div>
 
+    <div class="form-group" :class="{ 'has-error': errors.has('email') }">
     <div class="form-group">
       <label>Email</label>
       <input type="text" class="form-control" v-model="user.email" />
+      <input type="text" class="form-control" v-model="user.email" name="email" v-validate="'required|email'" />
+      <span v-show="errors.has('email')" class="help-block text-danger">
+        {{ errors.first('email') }}
+      </span>
     </div>
 
     <div class="form-group">
@@ -83,5 +98,41 @@
 </template>
 
 <script>
+// Используемые плагины
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
 
+// Подключаем vee-validate
+Vue.use(VeeValidate);
+
+export default {
+  name: 'UserForm',
+  // Прокидываем область видимости родителя для валидации
+  inject: ['$validator'],
+  components: {
+
+  },
+  model: {
+    // Настраиваем компоненту работу с v-model
+    // (если компонент принимает на вход value и в какой-то момент генерирует событие input с новым значением, то можно переписать v-bind на v-model, т.к. v-model - синтаксический сахар м\у биндингом value и обработкой события input)
+    // снаружи остается тоже самое
+    // внутри говорим, что будем работать с user, а не с value
+    // также меняем ниже props - value на user
+    // и меняем в разметке input'ов value на user
+    prop: 'user'
+    // можно также поменять внутри событие
+    // обратная свзяь будет происходить по событию change
+    // event: 'change'
+  },
+  props: {
+    // Пользователь
+    user: {
+      type: Object,
+      required: true
+    }
+  },
+  data: () => ({
+    accessList: ['guest', 'user', 'admin']
+  })
+};
 </script>
