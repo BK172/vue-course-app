@@ -16,8 +16,6 @@
       </div>
       <div class="panel-body">
 
-        <!-- можно переписать на v-model -->
-        <!-- <user-form :value="user"> -->
         <user-form v-model="user">
           <div slot="buttons">
             <button type="button" class="btn btn-success" @click="save">
