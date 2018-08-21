@@ -8,6 +8,7 @@
     <div class="panel-body">
 
       <dashboard-grid title="Пользователей в базе" :url="url">
+        
       </dashboard-grid>
 
     </div>

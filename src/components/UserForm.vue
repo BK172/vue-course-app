@@ -70,6 +70,7 @@
 
     <div class="form-group">
       <label>Дата регистрации</label>
+      <datepicker v-model="user.registered"></datepicker>
     </div>
 
     <hr>
