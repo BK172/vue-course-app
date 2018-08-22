@@ -13,7 +13,7 @@
 
       <div class="form-group">
         <div class="col-md-2">
-          
+          <rows-picker v-model.number="rowsPerPage" />
         </div>
         <div class="col-md-4">
           <p class="form-control-static">
@@ -35,6 +35,7 @@
 
       <div class="form-group">
         <strong>Выбрана страница {{ selectedPage }}</strong>
+        <rows-paginator v-model.number="selectedPage" :per-page="rowsPerPage" :total="totalRows" />
       </div>
     </div>
   </div>
@@ -44,10 +45,15 @@
 // Используемые плагины
 import axios from 'axios';
 
+// Используемые компоненты
+import RowsPicker from './Dashboard/RowsPerPage.vue';
+import RowsPaginator from './Dashboard/RowsPaginator.vue';
+
 export default {
   name: 'DashboardGrid',
   components: {
-
+    RowsPicker,
+    RowsPaginator
   },
   props: {
     // Заголовок таблицы
