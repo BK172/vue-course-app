@@ -4,9 +4,7 @@
   <div>
 
     <div class="form-group" :class="{ 'has-error': errors.has('firstName') }">
-    <div class="form-group">
       <label>Имя</label>
-      <input type="text" class="form-control" v-model="user.firstName" />
       <input type="text" class="form-control" v-model="user.firstName" name="firstName" v-validate="'required'" />
       <span v-show="errors.has('firstName')" class="help-block text-danger">
         {{ errors.first('firstName') }}
@@ -14,9 +12,7 @@
     </div>
 
     <div class="form-group" :class="{ 'has-error': errors.has('lastName') }">
-    <div class="form-group">
       <label>Фамилия</label>
-      <input type="text" class="form-control" v-model="user.lastName" />
       <input type="text" class="form-control" v-model="user.lastName" name="lastName" v-validate="'required'" />
       <span v-show="errors.has('lastName')" class="help-block text-danger">
         {{ errors.first('lastName') }}
@@ -24,9 +20,7 @@
     </div>
 
     <div class="form-group" :class="{ 'has-error': errors.has('email') }">
-    <div class="form-group">
       <label>Email</label>
-      <input type="text" class="form-control" v-model="user.email" />
       <input type="text" class="form-control" v-model="user.email" name="email" v-validate="'required|email'" />
       <span v-show="errors.has('email')" class="help-block text-danger">
         {{ errors.first('email') }}
@@ -35,6 +29,7 @@
 
     <div class="form-group">
       <label>URL картинки</label>
+      <avatar-uploader v-model="user.picture" />
     </div>
 
     <div class="form-group">
@@ -110,7 +105,8 @@ export default {
   // Прокидываем область видимости родителя для валидации
   inject: ['$validator'],
   components: {
-
+    Datepicker: () => import('@/components/datepicker.vue'),
+    AvatarUploader: () => import('@/components/avatar-uploader.vue')
   },
   model: {
     // Настраиваем компоненту работу с v-model
