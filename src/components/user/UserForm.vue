@@ -105,8 +105,8 @@ export default {
   // Прокидываем область видимости родителя для валидации
   inject: ['$validator'],
   components: {
-    Datepicker: () => import('@/components/datepicker.vue'),
-    AvatarUploader: () => import('@/components/avatar-uploader.vue')
+    Datepicker: () => import('@/components/common/datepicker.vue'),
+    AvatarUploader: () => import('@/components/common/avatar-uploader.vue')
   },
   model: {
     // Настраиваем компоненту работу с v-model

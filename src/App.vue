@@ -1,5 +1,7 @@
+<!-- Компонент приложения / шаблона страниц -->
+
 <template>
-  <div>
+  <div id="app">
 
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -11,24 +13,19 @@
             <span class="icon-bar"></span>
           </button>
           <router-link to="/" class="navbar-brand">
-            Vue.js course app
+            {{ layoutTitle }}
           </router-link>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <router-link tag="li" active-class="active" to="/" exact>
-              <a>
-                Главная
-              </a>
-            </router-link>
-            <router-link tag="li" active-class="active" to="/list" exact>
+            <router-link tag="li" to="/list" active-class="active" exact>
               <a>
                 Список пользователей
               </a>
             </router-link>
-            <router-link tag="li" active-class="active" to="/user/add" exact>
+            <router-link tag="li" to="/user/add" active-class="active" exact>
               <a>
-                Добавление пользователя
+                Добавить пользователя
               </a>
             </router-link>
           </ul>
@@ -36,21 +33,23 @@
       </div>
     </nav>
 
-    <div id="app" class="container">
-
-      <router-view/>
-
+    <div class="container">
+      <router-view></router-view>
     </div>
-
   </div>
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.css';
-
 export default {
-  name: 'app'
-};
+  name: 'app',
+  computed: {
+    // Заголовок страницы из хранилища Vuex
+    // который будет на всех страницах
+    layoutTitle () {
+      return this.$store.state.navbarTitle
+    }
+  }
+}
 </script>
 
 <style>

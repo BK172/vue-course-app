@@ -31,7 +31,7 @@
 import axios from 'axios';
 
 // Используемые компоненты
-import UserForm from '@/components/UserForm.vue';
+import UserForm from './UserForm.vue';
 
 // Модель для пустого пользователя
 const defaultUser = {

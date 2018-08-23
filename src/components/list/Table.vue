@@ -41,7 +41,7 @@
 export default {
   name: 'Table',
   components: {
-    DashboardGrid: () => import('@/components/DashboardGrid.vue')
+    DashboardGrid: () => import('@/components/common/DashboardGrid.vue')
   },
   data: () => ({
     // URL загрузки списка пользователей

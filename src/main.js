@@ -1,14 +1,28 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
+
 import Vue from 'vue';
+
+// Компонент страницы-шаблон
 import App from './App.vue';
+
+// Экземпляр маршрутизатора Vue-router с маршрутами
 import router from './router';
 
+// Экземпляр хранилища Vuex
+import store from './store';
+
 Vue.config.productionTip = false;
+
+window.addEventListener('unhandledrejection', event => {
+  window.console.error(event.promise);
+  window.console.error(event.reason);
+});
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
-  render: h => h(App),
+  render: h => h(App)
 });
